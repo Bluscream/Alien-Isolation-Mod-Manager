@@ -13,6 +13,9 @@ namespace Alien_Isolation_Mod_Manager.Classes
         [JsonIgnore]
         public FileInfo File { get; set; }
 
+        [JsonProperty("uid", NullValueHandling = NullValueHandling.Ignore)]
+        public Guid? Uid { get; set; }
+
         [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
         public string Name { get; set; }
 

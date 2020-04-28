@@ -27,8 +27,13 @@ namespace Alien_Isolation_Mod_Manager
         {
             txt_description.Clear();
             Mods = LoadMods();
-            Source.DataSource = Mods;
-            lst_mods.DataSource = Mods;
+            Source = new BindingSource() { DataSource = Mods };
+            Source.ListChanged += Source_ListChanged;
+            lst_mods.DataSource = Source;
+        }
+
+        private void Source_ListChanged(object sender, ListChangedEventArgs e)
+        {
         }
 
         private List<Mod> LoadMods()
@@ -48,6 +53,10 @@ namespace Alien_Isolation_Mod_Manager
 
         private void button1_Click(object sender, EventArgs e)
         {
+            foreach (DataGridViewRow row in lst_mods.SelectedRows)
+            {
+                ((Mod)row.DataBoundItem).Install();
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -136,7 +145,21 @@ namespace Alien_Isolation_Mod_Manager
             var txt = file.ReadAllText();
             txt_description.Clear();
             if (file.Extension.ToLower() == ".rtf") txt_description.Rtf = txt;
-            else txt_description.Text = txt;
+            else
+            {
+                // txt_description.Clear(); // Todo: https://stackoverflow.com/a/1563724/10881866 fuck me
+                txt_description.Text = txt;
+            }
+        }
+
+        private void startGameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("steam://run/214490");
+        }
+
+        private void resetGameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("steam://validate/214490");
         }
     }
 }

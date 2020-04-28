@@ -43,6 +43,9 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.txt_status = new System.Windows.Forms.ToolStripStatusLabel();
             this.bar_progress = new System.Windows.Forms.ToolStripProgressBar();
+            this.steamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.startGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.resetGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.lst_mods)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -157,7 +160,8 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.debugToolStripMenuItem,
-            this.reloadToolStripMenuItem});
+            this.reloadToolStripMenuItem,
+            this.steamToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(946, 25);
@@ -208,6 +212,29 @@
             this.bar_progress.Name = "bar_progress";
             this.bar_progress.Size = new System.Drawing.Size(100, 16);
             // 
+            // steamToolStripMenuItem
+            // 
+            this.steamToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.startGameToolStripMenuItem,
+            this.resetGameToolStripMenuItem});
+            this.steamToolStripMenuItem.Name = "steamToolStripMenuItem";
+            this.steamToolStripMenuItem.Size = new System.Drawing.Size(56, 21);
+            this.steamToolStripMenuItem.Text = "Steam";
+            // 
+            // startGameToolStripMenuItem
+            // 
+            this.startGameToolStripMenuItem.Name = "startGameToolStripMenuItem";
+            this.startGameToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.startGameToolStripMenuItem.Text = "Start Game";
+            this.startGameToolStripMenuItem.Click += new System.EventHandler(this.startGameToolStripMenuItem_Click);
+            // 
+            // resetGameToolStripMenuItem
+            // 
+            this.resetGameToolStripMenuItem.Name = "resetGameToolStripMenuItem";
+            this.resetGameToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.resetGameToolStripMenuItem.Text = "Validate Game";
+            this.resetGameToolStripMenuItem.Click += new System.EventHandler(this.resetGameToolStripMenuItem_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -251,6 +278,9 @@
         private System.Windows.Forms.ToolStripProgressBar bar_progress;
         private System.Windows.Forms.ToolStripStatusLabel txt_status;
         private System.Windows.Forms.ToolStripMenuItem reloadToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem steamToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem startGameToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem resetGameToolStripMenuItem;
     }
 }
 

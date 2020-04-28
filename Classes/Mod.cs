@@ -16,6 +16,15 @@ namespace Alien_Isolation_Mod_Manager.Classes
 
     public class Mod
     {
+        // [System.ComponentModel.Browsable(false)]
+        public bool Enabled
+        {
+            get; set;
+        } = false;
+
+        // [System.ComponentModel.Browsable(false)]
+        public bool Installed { get { return Enabled; } set { Install(); } }
+
         public string Name => Path.Name;
 
         [System.ComponentModel.Browsable(false)]
@@ -40,7 +49,6 @@ namespace Alien_Isolation_Mod_Manager.Classes
             Files = Path.GetFiles("*", SearchOption.AllDirectories).ToList();
             foreach (var file in Files)
             {
-                var _rel = file.GetRelativePathFrom(Path);
                 // System.Windows.Forms.MessageBox.Show(_file);
                 if (file.Name.ToLower() == "mod.json")
                 {
@@ -57,12 +65,33 @@ namespace Alien_Isolation_Mod_Manager.Classes
                 {
                     ConfigFiles.Add(file);
                 }
-                if (Stuff.ReadmeExtensions.Any(x => file.Extension.ToLower() == x))
+                else if (Stuff.ReadmeExtensions.Any(x => file.Extension.ToLower() == x))
                 {
                     ReadmeFiles.Add(file);
                 }
+                else
+                {
+                    var _rel = new FileInfo(file.GetRelativePathFrom(Path));
+                    if (!Enabled && _rel.Exists && _rel.Length == file.Length) Enabled = true; // Todo: Improve detection (maybe check all files and use real checksum?)
+                }
             }
             // ConfigFiles = Files.Where(t => Stuff.ConfigExtensions.Any(t => t.ToLower().EndsWith(".cfg"));
+        }
+
+        public bool Install()
+        {
+            foreach (var file in Files.Except(ConfigFiles).Except(ReadmeFiles))
+            {
+                var _rel = file.GetRelativePathFrom(Path);
+                var _path = Path.Parent.Parent.CombineFile(_rel);
+                var _bak = Path.CombineFile("Backup", _rel);
+                if (!_bak.Exists)
+                {
+                    // Todo: add logging
+                    file.CopyTo(_bak.FullName);
+                }
+            }
+            return true;
         }
 
         public override string ToString()

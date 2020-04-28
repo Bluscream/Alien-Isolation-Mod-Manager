@@ -338,6 +338,13 @@ namespace Alien_Isolation_Mod_Manager
 
         #region List
 
+        /*public static IEnumerable<TSource> Exclude<TSource, TKey>(this IEnumerable<TSource> source, Todo: Remove!
+        IEnumerable<TSource> exclude, Func<TSource, TKey> keySelector)
+        {
+            var excludedSet = new HashSet<TKey>(exclude.Select(keySelector));
+            return source.Where(item => !excludedSet.Contains(keySelector(item)));
+        }*/
+
         public static string ToQueryString(this NameValueCollection nvc)
         {
             if (nvc == null) return string.Empty;
