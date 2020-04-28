@@ -21,7 +21,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>pdbonly</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>S:\Alien\Alien Isolation\</OutputPath>
+    <OutputPath>S:\Steam\steamapps\common\Alien Isolation\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="Classes\JSONTree.cs" />
     <Compile Include="Classes\Mod.cs" />
+    <Compile Include="Classes\ModManifest.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>
